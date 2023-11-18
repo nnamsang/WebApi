@@ -19,8 +19,8 @@ namespace WebApi.Repository
 
             // Chuyển đổi sang danh sách các đối tượng HoaDonVM
             var hoaDonVm = hoaDonsDb.Select(HoaDon => new HoaDonVM()
-            {                IdHoaDon = HoaDon.IdHoaDon,
-            TenHoaDon = HoaDon.TenHoaDon,
+            {   IdHoaDon = HoaDon.IdHoaDon,
+                TenHoaDon = HoaDon.TenHoaDon,
                 SoHoaDon = HoaDon.SoHoaDon,
                 IdPhieuDeNghiMua = HoaDon.IdPhieuDeNghiMua,
                 DonViCungCap = HoaDon.DonViCungCap,
