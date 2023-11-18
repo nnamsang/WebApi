@@ -55,7 +55,7 @@ namespace WebApi.Controllers
             
         }
         [HttpPost]
-        public async Task<IActionResult> PostAnh([FromForm] VatTuVM vatTu)
+        public async Task<IActionResult> PostAnh( VatTuVM vatTu)
         {
             var anh = new VatTu { 
                 IdVatTu = vatTu.IdVatTu,

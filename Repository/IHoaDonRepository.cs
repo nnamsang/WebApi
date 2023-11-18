@@ -5,10 +5,10 @@ namespace WebApi.Repository
 {
     public interface IHoaDonRepository
     {
-        IEnumerable<HoaDonVM> GetAllHoaDons();
-        HoaDonVM GetHoaDonById(int id);
-        public void AddHoaDon(HoaDonVM hoaDon);
-        public void UpdateHoaDon(int id,HoaDonVM hoaDon);
+        List<HoaDonVM> GetAllHoaDons();
+        HoaDonModel GetHoaDonById(int id);
+        public HoaDonModel AddHoaDon(HoaDonModel hoaDon);
+        public void UpdateHoaDon(int id,HoaDonModel hoaDon);
        public void DeleteHoaDon(int id);
 
       

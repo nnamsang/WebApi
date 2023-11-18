@@ -23,18 +23,19 @@ namespace WebApi.Controllers
             return Ok(hoaDons);
         }
         [HttpGet("{id}")]
-        public HoaDonVM GetHoaDonById(int idHoaDon)
+        public HoaDonModel GetHoaDonById(int idHoaDon)
         {
             return _hoaDonRepository.GetHoaDonById(idHoaDon);
         }
         [HttpPost]
-        public void AddHoaDon(HoaDonVM hoaDon)
+        public HoaDonModel AddHoaDon(HoaDonModel hoaDon)
         {
-            _hoaDonRepository.AddHoaDon(hoaDon);
+           return _hoaDonRepository.AddHoaDon(hoaDon);
+
         }
 
         [HttpPut("id")]
-        public void UpdateHoaDon(int id, HoaDonVM hoaDon)
+        public void UpdateHoaDon(int id, HoaDonModel hoaDon)
         {
             _hoaDonRepository.UpdateHoaDon(id, hoaDon);
 

@@ -12,28 +12,58 @@ namespace WebApi.Repository
         {
             _context = context;
         }
-        
-        IEnumerable<HoaDonVM> IHoaDonRepository.GetAllHoaDons()
+
+        /**  IEnumerable<HoaDonVM> IHoaDonRepository.GetAllHoaDons()
+          {
+              var hoaDonsDb = _context.HoaDons;
+
+              // Chuyển đổi sang danh sách các đối tượng HoaDonVM
+              var hoaDonVm = hoaDonsDb.Select(HoaDon => new HoaDonVM()
+              {   IdHoaDon = HoaDon.IdHoaDon,
+                  TenHoaDon = HoaDon.TenHoaDon,
+                  SoHoaDon = HoaDon.SoHoaDon,
+                  IdPhieuDeNghiMua = HoaDon.IdPhieuDeNghiMua,
+                  DonViCungCap = HoaDon.DonViCungCap,
+                  HinhThucThanhToan = HoaDon.HinhThucThanhToan,
+                  NgayNhapHoaDon = HoaDon.NgayNhapHoaDon,
+                  NgayHoaDon = HoaDon.NgayHoaDon
+
+                 
+              });
+
+              return hoaDonVm;
+          }
+        **/
+        public List<HoaDonVM> GetAllHoaDons()
         {
-            var hoaDonsDb = _context.HoaDons;
 
-            // Chuyển đổi sang danh sách các đối tượng HoaDonVM
-            var hoaDonVm = hoaDonsDb.Select(HoaDon => new HoaDonVM()
-            {   IdHoaDon = HoaDon.IdHoaDon,
-                TenHoaDon = HoaDon.TenHoaDon,
-                SoHoaDon = HoaDon.SoHoaDon,
-                IdPhieuDeNghiMua = HoaDon.IdPhieuDeNghiMua,
-                DonViCungCap = HoaDon.DonViCungCap,
-                HinhThucThanhToan = HoaDon.HinhThucThanhToan,
-                NgayNhapHoaDon = HoaDon.NgayNhapHoaDon,
-                NgayHoaDon = HoaDon.NgayHoaDon
-               
-            });
+            // Tạo danh sách các đối tượng HoaDonVM
 
-            return hoaDonVm;
+            var hoaDonsDb = from hd in _context.HoaDons
+                            join ctp in _context.ChiTietPhieus on hd.IdHoaDon equals ctp.IdHoaDon
+                            select new HoaDonVM
+
+                            {
+
+                                IdHoaDon = hd.IdHoaDon,
+                                TenHoaDon = hd.TenHoaDon,
+                                SoHoaDon = hd.SoHoaDon,
+                                IdPhieuDeNghiMua = hd.IdPhieuDeNghiMua,
+                                DonViCungCap = hd.DonViCungCap,
+                                HinhThucThanhToan = hd.HinhThucThanhToan,
+                                NgayNhapHoaDon = hd.NgayNhapHoaDon,
+                                NgayHoaDon = hd.NgayHoaDon,
+                                //danh sach cac thuoc tính dc them
+                                DonGia = ctp.DonGia,
+
+                                TongSoLuong = ctp.TongSoLuong,
+                                ThanhTien = ctp.ThanhTien
+
+
+                            };
+         return hoaDonsDb.ToList();
         }
-
-        public HoaDonVM GetHoaDonById(int idHoaDon)
+        public HoaDonModel GetHoaDonById(int idHoaDon)
         {
             var hoaDonsDb = _context.HoaDons.Find(idHoaDon);
 
@@ -42,7 +72,7 @@ namespace WebApi.Repository
                 return null;
             }
 
-            var hoaDonVm = new HoaDonVM
+            var hoaDonVm = new HoaDonModel
             {
                 IdHoaDon = hoaDonsDb.IdHoaDon,
                 TenHoaDon = hoaDonsDb.TenHoaDon,
@@ -57,10 +87,8 @@ namespace WebApi.Repository
             return hoaDonVm;
         }
 
-        public void AddHoaDon(HoaDonVM hoaDon)
+        public HoaDonModel AddHoaDon(HoaDonModel hoaDon)
         {
-            if (hoaDon != null)
-            {
                 var hd = new HoaDon
                 {
                     SoHoaDon = hoaDon.SoHoaDon,
@@ -73,11 +101,21 @@ namespace WebApi.Repository
                 };
 
                 _context.HoaDons.Add(hd);
-                _context.SaveChanges();            
-            }        
+                _context.SaveChanges();
+            return new HoaDonModel
+            {
+
+                SoHoaDon = hd.SoHoaDon,
+                TenHoaDon = hd.TenHoaDon,
+                IdPhieuDeNghiMua = hd.IdPhieuDeNghiMua,
+                DonViCungCap = hd.DonViCungCap,
+                HinhThucThanhToan = hd.HinhThucThanhToan,
+                NgayNhapHoaDon = hd.NgayNhapHoaDon,
+                NgayHoaDon = hd.NgayHoaDon
+            };
         }
 
-        public void UpdateHoaDon(int id, HoaDonVM hoaDon)
+        public void UpdateHoaDon(int id, HoaDonModel hoaDon)
         {
             var _hoaDon = _context.HoaDons.SingleOrDefault(o => o.IdHoaDon == id);
             if (_hoaDon != null)

@@ -5,8 +5,8 @@
         public string? HoTen { get; set; }
         public string? TenVatTu { get; set; } = null!;
         public string? MaVatTu { get; set; } = null!;
-        public int TongTien { get; set; }
-        public float TongSoLuong { get; set; }
+        public int? TongTien { get; set; }
+        public float? TongSoLuong { get; set; }
     }
     public class PhieuTrinhMuaModel
     {
