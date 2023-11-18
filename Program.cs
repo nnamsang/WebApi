@@ -29,7 +29,7 @@ builder.Services.AddScoped<IPhieuDeNghiVatTuRepotirory, PhieuDeNghiVatTuReposito
 //<<<<<<< Updated upstream
 builder.Services.AddScoped<IChucVuRepository, ChucVuRepository>();
 builder.Services.AddScoped<IKhoRepository, KhoRepository>();
-
+builder.Services.AddScoped<IHoaDonRepository, HoaDonRepository>();
 //=======
 builder.Services.AddScoped<IChiTietPhieuRepo, ChiTietPhieuRepo>();
 builder.Services.AddScoped<IPhieuTrinhMuaRepo, PhieuTrinhMuaRepo>();

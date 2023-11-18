@@ -8,7 +8,7 @@ namespace WebApi.Repository
         KhoVM GetKhoById(int id);
         IEnumerable<KhoVM> GetAllKhos();
         KhoVM AddKho(KhoVM kho);
-        public void UpdateKho(KhoVM kho, int id);
+        public void UpdateKho( int id , KhoVM kho);
         public void DeleteKho(int id);
     }
 }

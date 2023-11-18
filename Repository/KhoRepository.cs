@@ -77,7 +77,7 @@ namespace WebApi.Repository
             return KhoVm;
         }
 
-        public void UpdateKho(KhoVM kho,int id)
+        public void UpdateKho(int id, KhoVM kho)
         {
             var _kho = _context.Khos.SingleOrDefault(o => o.IdKho == id);
             if (_kho != null)

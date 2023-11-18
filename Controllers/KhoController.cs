@@ -35,9 +35,9 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("id")]
-        public void UpdateKho( KhoVM kho, int id)
+        public void UpdateKho(int id, KhoVM kho)
         {
-            _khoRepository.UpdateKho(kho,id);
+            _khoRepository.UpdateKho(id, kho);
 
         }
 

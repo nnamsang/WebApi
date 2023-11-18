@@ -11,6 +11,7 @@ namespace WebApi.Data.Models
         }
 
         public int IdHoaDon { get; set; }
+        public string TenHoaDon { get; set; } = null!;
         public string SoHoaDon { get; set; } = null!;
         public int IdPhieuDeNghiMua { get; set; }
         public string DonViCungCap { get; set; } = null!;
