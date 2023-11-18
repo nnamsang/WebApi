@@ -54,8 +54,7 @@ namespace WebApi.Repository
                                 NgayNhapHoaDon = hd.NgayNhapHoaDon,
                                 NgayHoaDon = hd.NgayHoaDon,
                                 //danh sach cac thuoc tính dc them
-                                DonGia = ctp.DonGia,
-
+                                DonGia = ctp.DonGia,  
                                 TongSoLuong = ctp.TongSoLuong,
                                 ThanhTien = ctp.ThanhTien
 
